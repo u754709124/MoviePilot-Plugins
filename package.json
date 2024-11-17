@@ -926,7 +926,7 @@
         "description": "Server酱3发送消息通知。",
         "labels": "消息通知",
         "version": "0.1",
-        "icon": "https://sc3.ft07.com/favicon.png",
+        "icon": "ServerChan3.png",
         "author": "Chdon",
         "level": 1,
         "v2": true

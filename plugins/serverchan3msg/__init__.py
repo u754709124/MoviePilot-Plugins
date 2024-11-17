@@ -14,9 +14,9 @@ class ServerChan3Msg(_PluginBase):
     # 插件描述
     plugin_desc = "支持使用Server酱3发送消息通知。"
     # 插件图标
-    plugin_icon = "https://sc3.ft07.com/favicon.png"
+    plugin_icon = "ServerChan3.png"
     # 插件版本
-    plugin_version = "0.1"
+    plugin_version = "0.2"
     # 插件作者
     plugin_author = "Chdon"
     # 作者主页
@@ -188,6 +188,8 @@ class ServerChan3Msg(_PluginBase):
         title = msg_body.get("title")
         # 文本
         text = msg_body.get("text")
+        # 图片
+        image = msg_body.get("image")
 
         if not title and not text:
             logger.warn("标题和内容不能同时为空")
@@ -201,7 +203,10 @@ class ServerChan3Msg(_PluginBase):
         try:
             if not self._sendKey:
                 return False, "参数未配置"
-            res = sc_send(self._sendKey, title, text, {"tags": self._tag})
+            send_text = text
+            if image is not None:
+                send_text += '\r\n![image](%s)' % image
+            res = sc_send(self._sendKey, title, send_text, {"tags": self._tag})
             if res:
                 if res.code == 0:
                     logger.info(f"ServerChan3消息发送成功")
