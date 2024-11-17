@@ -207,6 +207,7 @@ class ServerChan3Msg(_PluginBase):
             if image is not None:
                 send_text += '\r\n![image](%s)' % image
             res = sc_send(self._sendKey, title, send_text, {"tags": self._tag})
+            logger.debug(res)
             if res:
                 if res.code == 0:
                     logger.info(f"ServerChan3消息发送成功")
