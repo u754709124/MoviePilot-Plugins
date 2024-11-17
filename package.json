@@ -926,7 +926,7 @@
         "description": "Server酱3发送消息通知。",
         "labels": "消息通知",
         "version": "0.7",
-        "icon": "https://github.com/u754709124/MoviePilot-Plugins/blob/main/icons/ServerChan3.png",
+        "icon": "https://raw.githubusercontent.com/u754709124/MoviePilot-Plugins/refs/heads/main/icons/ServerChan3.png",
         "author": "Chdon",
         "level": 1,
         "v2": true

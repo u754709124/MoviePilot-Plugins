@@ -14,7 +14,7 @@ class ServerChan3Msg(_PluginBase):
     # 插件描述
     plugin_desc = "支持使用Server酱3发送消息通知。"
     # 插件图标
-    plugin_icon = "https://github.com/u754709124/MoviePilot-Plugins/blob/main/icons/ServerChan3.png"
+    plugin_icon = "https://raw.githubusercontent.com/u754709124/MoviePilot-Plugins/refs/heads/main/icons/ServerChan3.png"
     # 插件版本
     plugin_version = "0.7"
     # 插件作者
