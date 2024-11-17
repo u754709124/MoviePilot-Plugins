@@ -920,5 +920,15 @@
         "history": {
             "v1.3": "消息限流发送，以缓解IYUU服务器压力"
         }
+    },
+    "ServerChan3Msg": {
+        "name": "Server酱3消息推送",
+        "description": "Server酱3发送消息通知。",
+        "labels": "消息通知",
+        "version": "0.1",
+        "icon": "https://sc3.ft07.com/favicon.png",
+        "author": "Chdon",
+        "level": 1,
+        "v2": true
     }
 }
