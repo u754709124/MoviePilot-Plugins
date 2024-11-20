@@ -6,7 +6,6 @@ from app.plugins import _PluginBase
 from app.schemas.types import EventType, NotificationType
 
 from serverchan_sdk import sc_send
-import json
 
 
 class ServerChan3Msg(_PluginBase):
@@ -17,7 +16,7 @@ class ServerChan3Msg(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/u754709124/MoviePilot-Plugins/refs/heads/main/icons/ServerChan3.png"
     # 插件版本
-    plugin_version = "0.9"
+    plugin_version = "1.0"
     # 插件作者
     plugin_author = "Chdon"
     # 作者主页
@@ -201,6 +200,7 @@ class ServerChan3Msg(_PluginBase):
             logger.info(f"消息类型 {msg_type.value} 未开启消息发送")
             return
 
+        res=None
         try:
             if not self._sendKey:
                 return False, "参数未配置"
@@ -210,9 +210,8 @@ class ServerChan3Msg(_PluginBase):
             if image is not None:
                 send_text += '\r\n![image](%s)' % image
             res = sc_send(self._sendKey, title, send_text, {"tags": self._tag})
-            ret_json = json.loads(res)
-            errCode = ret_json['code']
-            errorMsg = ret_json['message']
+            errCode = res['code']
+            errorMsg = res['message']
             if res:
                 if errCode == 0:
                     logger.info(f"ServerChan3消息发送成功")
@@ -222,6 +221,8 @@ class ServerChan3Msg(_PluginBase):
                 logger.warn(f"ServerChan3消息发送失败！")
         except Exception as msg_e:
             logger.error(f"ServerChan3消息发送失败，错误信息：{str(msg_e)}")
+            if res is not None:
+                logger.info(res)
 
     def stop_service(self):
         """
