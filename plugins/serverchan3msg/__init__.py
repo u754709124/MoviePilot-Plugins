@@ -6,6 +6,7 @@ from app.plugins import _PluginBase
 from app.schemas.types import EventType, NotificationType
 
 from serverchan_sdk import sc_send
+import json
 
 
 class ServerChan3Msg(_PluginBase):
@@ -16,7 +17,7 @@ class ServerChan3Msg(_PluginBase):
     # 插件图标
     plugin_icon = "https://raw.githubusercontent.com/u754709124/MoviePilot-Plugins/refs/heads/main/icons/ServerChan3.png"
     # 插件版本
-    plugin_version = "0.8"
+    plugin_version = "0.9"
     # 插件作者
     plugin_author = "Chdon"
     # 作者主页
@@ -203,13 +204,15 @@ class ServerChan3Msg(_PluginBase):
         try:
             if not self._sendKey:
                 return False, "参数未配置"
-            send_text = text
+            send_text = ""
+            if text is not None:
+                send_text = text
             if image is not None:
                 send_text += '\r\n![image](%s)' % image
             res = sc_send(self._sendKey, title, send_text, {"tags": self._tag})
-            ret_json = res.json()
-            errCode = ret_json.get('code')
-            errorMsg = ret_json.get('message')
+            ret_json = json.loads(res)
+            errCode = ret_json['code']
+            errorMsg = ret_json['message']
             if res:
                 if errCode == 0:
                     logger.info(f"ServerChan3消息发送成功")
