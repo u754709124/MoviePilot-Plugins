@@ -251,5 +251,14 @@
         "history": {
             "v2.0": "兼容MoviePilot V2"
         }
+    },
+    "OoMsg": {
+        "name": "噢噢消息通知",
+        "description": "支持使用噢噢消息小程序发送消息通知。",
+        "labels": "通知",
+        "version": "1.0",
+        "icon": "Wechat_A.png",
+        "author": "chdon",
+        "level": 1
     }
 }
