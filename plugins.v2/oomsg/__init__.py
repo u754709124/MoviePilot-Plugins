@@ -15,7 +15,7 @@ class OoMsg(_PluginBase):
     # 插件图标
     plugin_icon = "Wechat_A.png"
     # 插件版本
-    plugin_version = "1.2"
+    plugin_version = "1.3"
     # 插件作者
     plugin_author = "Chdon"
     # 作者主页
@@ -63,7 +63,7 @@ class OoMsg(_PluginBase):
             })
             test_title = "噢噢消息测试通知"
             test_body = "噢噢消息通知插件已启用"
-            test_content = f"# {test_title}\n\n---\n\n{test_body}"
+            test_content = f"# 🎬 {test_title}\n\n{test_body}"
             self._send(test_title, test_content)
 
     def get_state(self) -> bool:
@@ -370,9 +370,9 @@ class OoMsg(_PluginBase):
             logger.info(f"消息类型 {msg_type.value} 未开启消息发送")
             return
 
-        # 拼装 Markdown 正文：标题置顶（一级标题），随后是原文本与可选图片
+        # 拼装 Markdown 正文：标题置顶（带 emoji 的一级标题），随后是原文本与可选图片
         final_title = title or "通知"
-        content_parts = [f"# 🎬 {final_title}" ]
+        content_parts = [f"# 🎬 {final_title}"]
         if text:
             content_parts.append(str(text))
         if image:
