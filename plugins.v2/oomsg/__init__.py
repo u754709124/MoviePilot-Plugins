@@ -61,7 +61,10 @@ class OoMsg(_PluginBase):
                 "deviceid": self._deviceid,
                 "group": self._group,
             })
-            self._send("噢噢消息测试通知", "噢噢消息通知插件已启用")
+            test_title = "噢噢消息测试通知"
+            test_body = "噢噢消息通知插件已启用"
+            test_content = f"# {test_title}\n\n---\n\n{test_body}"
+            self._send(test_title, test_content)
 
     def get_state(self) -> bool:
         return bool(
@@ -367,15 +370,16 @@ class OoMsg(_PluginBase):
             logger.info(f"消息类型 {msg_type.value} 未开启消息发送")
             return
 
-        # 拼装 Markdown 正文：保留原文本，若有图片则附加
-        content_parts = []
+        # 拼装 Markdown 正文：标题置顶（一级标题 + 分隔线），随后是原文本与可选图片
+        final_title = title or "通知"
+        content_parts = [f"# {final_title}", "---"]
         if text:
             content_parts.append(str(text))
         if image:
             content_parts.append(f"![image]({image})")
-        content = "\n\n".join(content_parts) if content_parts else " "
+        content = "\n\n".join(content_parts)
 
-        return self._send(title or "通知", content)
+        return self._send(final_title, content)
 
     def stop_service(self):
         """
