@@ -17,9 +17,9 @@ class OoMsg(_PluginBase):
     # 插件版本
     plugin_version = "1.1"
     # 插件作者
-    plugin_author = "chdon"
+    plugin_author = "Chdon"
     # 作者主页
-    author_url = "https://github.com/chdon"
+    author_url = "https://github.com/u754709124"
     # 插件配置项ID前缀
     plugin_config_prefix = "oomsg_"
     # 加载顺序
